@@ -21,7 +21,7 @@ data class HomePage(
     ) {
         data class Item(
                 @SerializedName("ad_info")
-                var adInfo: AdInfo,
+                var adInfo: AdInfo?,
                 @SerializedName("args")
                 var args: Args,
                 @SerializedName("badge")
@@ -36,6 +36,8 @@ data class HomePage(
                 var cardType: String, // small_cover_v2
                 @SerializedName("cover")
                 var cover: String, // http://i0.hdslb.com/bfs/archive/884e982379b32ef1dc3281e0da1864e62cf74cc3.jpg
+                @SerializedName("covers")
+                var covers: List<String>,
                 @SerializedName("cover_left_text_1")
                 var coverLeftText1: String, // 0:40
                 @SerializedName("cover_left_text_2")
