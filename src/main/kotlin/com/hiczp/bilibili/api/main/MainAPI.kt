@@ -22,7 +22,7 @@ interface MainAPI {
      */
     @GET("/x/v2/reply/main")
     fun reply(
-            @Query("mode") mode: Int = 1,
+            @Query("mode") mode: Int = 3,
             @Query("next") next: Long? = null,
             @Query("oid") oid: Long,
             @Query("plat") plat: Int? = 2,

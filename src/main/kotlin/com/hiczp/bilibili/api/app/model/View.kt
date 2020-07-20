@@ -56,7 +56,7 @@ data class View(
             @SerializedName("pubdate")
             var pubdate: Int, // 1550654012
             @SerializedName("relates")
-            var relates: List<Relate>,
+            var relates: List<Relate>?,
             @SerializedName("req_user")
             var reqUser: ReqUser,
             @SerializedName("rights")
@@ -80,8 +80,17 @@ data class View(
             @SerializedName("honor")
             var honor: Honor,
             @SerializedName("bvid")
-            var bvid: String //BV1xx411c79H
+            var bvid: String, //BV1xx411c79H
+            @SerializedName("history")
+            var history: History?
     ) {
+        data class History(
+                @SerializedName("cid")
+                var cid: Int,
+                @SerializedName("progress")
+                var progress: Long
+        )
+
         data class Cm(
                 @SerializedName("ad_info")
                 var adInfo: JsonElement, // {}
@@ -299,7 +308,7 @@ data class View(
                 @SerializedName("is_ad_loc")
                 var isAdLoc: Boolean, // true
                 @SerializedName("owner")
-                var owner: Owner,
+                var owner: Owner?,
                 @SerializedName("param")
                 var `param`: String, // 38496110
                 @SerializedName("pic")
