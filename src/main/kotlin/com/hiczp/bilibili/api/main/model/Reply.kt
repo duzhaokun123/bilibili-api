@@ -1,6 +1,7 @@
 package com.hiczp.bilibili.api.main.model
 
 import com.google.gson.JsonElement
+import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 
 data class Reply(
@@ -133,7 +134,9 @@ data class Reply(
                     @SerializedName("message")
                     var message: String, // 高速公路有盈利吗
                     @SerializedName("plat")
-                    var plat: Int // 3
+                    var plat: Int, // 3
+                    @SerializedName("emote")
+                    var emote: JsonObject?
             )
 
             data class Reply(
