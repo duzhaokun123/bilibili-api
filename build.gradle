@@ -1,8 +1,8 @@
 buildscript {
     ext {
-        kotlin_version = '1.3.71'
-        kotlin_coroutines_version = '1.3.5'
-        ktor_version = '1.3.1'
+        kotlin_version = '1.4.0'
+        kotlin_coroutines_version = '1.3.9'
+        ktor_version = '1.4.0'
         jvm_target = JavaVersion.VERSION_1_8
     }
 
@@ -32,7 +32,7 @@ repositories {
 //kotlin
 dependencies {
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
-    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8'
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: kotlin_version
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
     compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: kotlin_coroutines_version
 }

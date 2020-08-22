@@ -78,7 +78,7 @@ data class View(
             @SerializedName("videos")
             var videos: Int, // 1
             @SerializedName("honor")
-            var honor: Honor,
+            var honor: Honor?,
             @SerializedName("bvid")
             var bvid: String, //BV1xx411c79H
             @SerializedName("history")
