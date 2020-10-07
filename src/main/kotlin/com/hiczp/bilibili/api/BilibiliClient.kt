@@ -43,7 +43,7 @@ import javax.crypto.Cipher
 @Suppress("unused")
 class BilibiliClient(
         @Suppress("MemberVisibilityCanBePrivate")
-        val billingClientProperties: BilibiliClientProperties = BilibiliClientProperties(),
+        val billingClientProperties: BilibiliClientProperties = object : BilibiliClientProperties {},
         private val logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE
 ) {
     /**
@@ -66,6 +66,7 @@ class BilibiliClient(
     @Suppress("MemberVisibilityCanBePrivate")
     val userId
         get() = loginResponse?.userId
+
     @Suppress("MemberVisibilityCanBePrivate")
     val token
         get() = loginResponse?.token
