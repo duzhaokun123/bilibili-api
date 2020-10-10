@@ -120,8 +120,19 @@ data class Space(
                     @SerializedName("name")
                     var name: String, // 默认收藏夹
                     @SerializedName("state")
-                    var state: Int // 0
-            )
+                    var state: Int, // 0
+                    @SerializedName("cover")
+                    var cover: List<Cover>
+            ) {
+                data class Cover(
+                        @SerializedName("aid")
+                        var aid: Long,
+                        @SerializedName("pic")
+                        var pic: String,
+                        @SerializedName("type")
+                        var type: Int
+                )
+            }
         }
 
         data class Images(
@@ -390,7 +401,6 @@ data class Space(
                     var currentLevel: Int, // 5
                     @SerializedName("current_min")
                     var currentMin: Int, // 10800
-                    //https://github.com/czp3009/bilibili-api/issues/28
                     @SerializedName("next_exp")
                     var nextExp: String // 28800
             )

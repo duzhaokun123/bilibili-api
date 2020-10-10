@@ -380,4 +380,30 @@ interface AppAPI {
             @Query("ps") pageSize: Int = 20,
             @Query("type") type: Int = 6
     ): Deferred<SearchArticleResult>
+
+    /**
+     * 开屏广告
+     */
+    @GET("/x/v2/splash/list")
+    fun splashList(
+            @Query("width") width: Int = 1080,
+            @Query("height") height: Int = 2040,
+            @Query("mobi_app") mobiApp: String = "android"
+    ): Deferred<SplashList>
+
+    /**
+     * 历史记录
+     *
+     * @param business all: 全部, archive: 视频, live: 直播, article: 专栏
+     * @param max history.data.cursor.max
+     * @param maxTp history.data.cursor.max_tp
+     * @param ps 一页大小
+     */
+    @GET("/x/v2/history/cursor")
+    fun history(
+            @Query("business") business: String,
+            @Query("max") max: Long = 0,
+            @Query("max_tp") maxTp: Int = 0,
+            @Query("ps") ps: Int = 20
+    ): Deferred<History>
 }

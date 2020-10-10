@@ -50,6 +50,22 @@ interface MainAPI {
     ): Deferred<ChildReply>
 
     /**
+     * 另一个获取一个视频下的评论的子评论
+     *
+     * @param oid 评论区 id
+     * @param root 根评论 id
+     * @param type 评论区类型
+     * @param next childReply2.data.cursor.next
+     */
+    @GET("/x/v2/reply/detail")
+    fun childReply2(
+        @Query("oid") oid: Long,
+        @Query("root") root: Long,
+        @Query("type") type: Int,
+        @Query("next") next: Long = 0
+    ): Deferred<ChildReply2>
+
+    /**
      * 查看 "对话列表"
      * 当一个子评论中有多组人在互相 at 时, 旁边就会有一个按钮 "查看对话", 将启动一个 dialog 展示内容
      * parentId 与 rootId 在请求子评论列表时取得
@@ -370,4 +386,43 @@ interface MainAPI {
      */
     @GET("/x/article/categories")
     fun articleCategories(): Deferred<ArticleCategories>
+
+    /**
+     * 添加至稍后再看
+     * 需要登录
+     *
+     * @param aid av号
+     */
+    @POST("/x/v2/history/toview/add")
+    @FormUrlEncoded
+    fun toView(
+            @Field("aid") aid: Long
+    ): Deferred<CommonResponse>
+
+    /**
+     * 添加至稍后再看
+     * 需要登录
+     *
+     * @param bvid bv号
+     */
+    @POST("/x/v2/history/toview/add")
+    @FormUrlEncoded
+    fun toView(
+            @Field("bvid") bvid: String
+    ): Deferred<CommonResponse>
+
+    /**
+     * 删评论
+     *
+     * @param type 评论的 type, 在评论中
+     * @param oid 评论区 id, 对于视频是aid
+     * @param rpid 要删除的评论 id
+     */
+    @POST("/x/v2/reply/del")
+    @FormUrlEncoded
+    fun delReply(
+            @Field("type") type: Int,
+            @Field("oid") oid: Long,
+            @Field("rpid") rpid: Long
+    ): Deferred<CommonResponse>
 }
