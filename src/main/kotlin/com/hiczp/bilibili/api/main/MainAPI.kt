@@ -425,4 +425,28 @@ interface MainAPI {
             @Field("oid") oid: Long,
             @Field("rpid") rpid: Long
     ): Deferred<CommonResponse>
+
+    /**
+     * 可用于获取收藏列表ids
+     *
+     * @param mid uid
+     */
+    @GET("/medialist/gateway/base/resource/ids")
+    fun resourceIds(
+           @Query("media_id")  mediaId: Long,
+           @Query("mid") mid: Long
+    ): Deferred<ResourceIds>
+
+    /**
+     * 可用于获取收藏列表infos
+     *
+     * @param resources 要请求的信息 多个 "$resourceIds.data[i].id:$resourceIds.data[i].type" 用 ',' 连接, 最多20个
+     * @param mid uid
+     */
+    @GET("/medialist/gateway/base/resource/infos")
+    fun resourceInfos(
+            @Query("media_id") mediaId: Long,
+            @Query("resources") resources: String,
+            @Query("mid") mid: Long
+    ): Deferred<ResourceInfos>
 }

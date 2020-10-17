@@ -1,6 +1,8 @@
 package com.hiczp.bilibili.api.passport.model
 
 import com.google.gson.annotations.SerializedName
+import com.hiczp.bilibili.api.getCookie
+import com.hiczp.bilibili.api.retrofit.Cookie
 import java.io.Serializable
 
 data class LoginResponse(
@@ -58,4 +60,9 @@ data class LoginResponse(
     //快捷方式
     val userId get() = data.tokenInfo.mid
     val token get() = data.tokenInfo.accessToken
+
+    val dedeUserID get() = getCookie(Cookie.DEDE_USER_ID)
+    val dedeUserIDCkMd5 get() = getCookie(Cookie.DEDE_USER_ID_CKMD5)
+    val sessdata get() = getCookie(Cookie.SESSDATA)
+    val biliJct get() = getCookie(Cookie.BILI_JCT)
 }

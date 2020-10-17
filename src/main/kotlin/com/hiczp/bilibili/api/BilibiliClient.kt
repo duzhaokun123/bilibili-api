@@ -10,14 +10,13 @@ import com.hiczp.bilibili.api.passport.PassportAPI
 import com.hiczp.bilibili.api.passport.model.LoginResponse
 import com.hiczp.bilibili.api.player.PlayerAPI
 import com.hiczp.bilibili.api.player.PlayerInterceptor
+import com.hiczp.bilibili.api.retrofit.Cookie
 import com.hiczp.bilibili.api.retrofit.Header
 import com.hiczp.bilibili.api.retrofit.Param
 import com.hiczp.bilibili.api.retrofit.exception.BilibiliApiException
-import com.hiczp.bilibili.api.retrofit.interceptor.CommonHeaderInterceptor
-import com.hiczp.bilibili.api.retrofit.interceptor.CommonParamInterceptor
-import com.hiczp.bilibili.api.retrofit.interceptor.FailureResponseInterceptor
-import com.hiczp.bilibili.api.retrofit.interceptor.SortAndSignInterceptor
+import com.hiczp.bilibili.api.retrofit.interceptor.*
 import com.hiczp.bilibili.api.vc.VcAPI
+import com.hiczp.bilibili.api.web.WebAPI
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.ConnectionPool
 import okhttp3.Interceptor
@@ -237,6 +236,19 @@ class BilibiliClient(
                         Param.DEVICE to { billingClientProperties.platform }
                 )
         )
+    }
+
+    /**
+     * Web 端接口
+     */
+    val webAPI by lazy {
+        createAPI<WebAPI>(BaseUrl.main,
+                CommonCookieInterceptor(
+                        Cookie.DEDE_USER_ID to { loginResponse?.dedeUserID },
+                        Cookie.DEDE_USER_ID_CKMD5 to { loginResponse?.dedeUserIDCkMd5 },
+                        Cookie.SESSDATA to { loginResponse?.sessdata },
+                        Cookie.BILI_JCT to { loginResponse?.biliJct }
+                ))
     }
 
     /**

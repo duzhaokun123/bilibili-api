@@ -57,6 +57,13 @@ object Param {
     const val SIGN = "sign"
 }
 
+object Cookie {
+    const val DEDE_USER_ID = "DedeUserID"
+    const val DEDE_USER_ID_CKMD5 = "DedeUserID__ckMd5"
+    const val SESSDATA = "SESSDATA"
+    const val BILI_JCT = "bili_jct"
+}
+
 internal object Charsets {
     const val UTF_8 = "UTF-8"
 }

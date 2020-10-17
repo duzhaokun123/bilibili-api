@@ -15,6 +15,7 @@ interface DanmakuAPI {
      *
      * @return 返回的内容是二进制数据, 由于数据量可能很大, 此处不做解析
      */
+    @Deprecated("官方不再使用")
     @GET("/x/v2/dm/list.so")
     fun list(
             @Query("aid") aid: Long,
