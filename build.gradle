@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlin_version = '1.4.0'
+        kotlin_version = '1.4.10'
         kotlin_coroutines_version = '1.3.9'
         ktor_version = '1.4.0'
         jvm_target = JavaVersion.VERSION_1_8
@@ -16,7 +16,7 @@ buildscript {
 }
 
 group = 'com.hiczp'
-version = '0.3.2'
+version = '0.3.3'
 description = 'Bilibili Android client API library for Kotlin'
 
 apply plugin: 'kotlin'

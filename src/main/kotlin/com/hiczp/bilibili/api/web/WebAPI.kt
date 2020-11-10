@@ -3,7 +3,6 @@ package com.hiczp.bilibili.api.web
 import com.hiczp.bilibili.api.retrofit.CommonResponse
 import com.hiczp.bilibili.api.web.model.VideoShot
 import kotlinx.coroutines.Deferred
-import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface WebAPI {

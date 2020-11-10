@@ -17,6 +17,7 @@ import com.hiczp.bilibili.api.retrofit.exception.BilibiliApiException
 import com.hiczp.bilibili.api.retrofit.interceptor.*
 import com.hiczp.bilibili.api.vc.VcAPI
 import com.hiczp.bilibili.api.web.WebAPI
+import com.hiczp.bilibili.api.weblive.WebLiveAPI
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.ConnectionPool
 import okhttp3.Interceptor
@@ -87,6 +88,13 @@ class BilibiliClient(
             Param.MOBILE_APP to { billingClientProperties.platform },
             Param.PLATFORM to { billingClientProperties.platform },
             Param.TIMESTAMP to { Instant.now().epochSecond.toString() }
+    )
+
+    private val defaultCommonCookieInterceptor = CommonCookieInterceptor(
+            Cookie.DEDE_USER_ID to { loginResponse?.dedeUserID },
+            Cookie.DEDE_USER_ID_CKMD5 to { loginResponse?.dedeUserIDCkMd5 },
+            Cookie.SESSDATA to { loginResponse?.sessdata },
+            Cookie.BILI_JCT to { loginResponse?.biliJct }
     )
 
     private val defaultCommonParamInterceptor = CommonParamInterceptor(*defaultCommonParamArray)
@@ -241,15 +249,12 @@ class BilibiliClient(
     /**
      * Web 端接口
      */
-    val webAPI by lazy {
-        createAPI<WebAPI>(BaseUrl.main,
-                CommonCookieInterceptor(
-                        Cookie.DEDE_USER_ID to { loginResponse?.dedeUserID },
-                        Cookie.DEDE_USER_ID_CKMD5 to { loginResponse?.dedeUserIDCkMd5 },
-                        Cookie.SESSDATA to { loginResponse?.sessdata },
-                        Cookie.BILI_JCT to { loginResponse?.biliJct }
-                ))
-    }
+    val webAPI by lazy { createAPI<WebAPI>(BaseUrl.main, defaultCommonCookieInterceptor) }
+
+    /**
+     * Web 直播
+     */
+    val webLiveAPI by lazy { createAPI<WebLiveAPI>(BaseUrl.live, defaultCommonCookieInterceptor) }
 
     /**
      * 登陆
