@@ -61,6 +61,11 @@ data class LoginResponse(
     val userId get() = data.tokenInfo.mid
     val token get() = data.tokenInfo.accessToken
 
+    /**
+     * 过期时间 秒
+     */
+    val expires get() = ts + data.tokenInfo.expiresIn
+
     val dedeUserID get() = getCookie(Cookie.DEDE_USER_ID)
     val dedeUserIDCkMd5 get() = getCookie(Cookie.DEDE_USER_ID_CKMD5)
     val sessdata get() = getCookie(Cookie.SESSDATA)
